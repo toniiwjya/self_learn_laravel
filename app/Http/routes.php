@@ -12,5 +12,25 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('halo');
 });
+
+Route::get('/halo', function()
+{
+    return 'halo';
+});
+
+Route::get('/halo-juga', 'SiteController@haloJuga');
+
+
+Route::get('/profile', 'ProfilController@index');
+
+Route::get('/materi', 'MateriController@show');
+
+Route::get('/materi/{id}', 'MateriController@single');
+
+Route::get('/login','LoginController@login');
+
+Route::get('login', 'LoginController@formsederhana');
+ 
+Route::post('login', 'LoginController@postformsederhana');
