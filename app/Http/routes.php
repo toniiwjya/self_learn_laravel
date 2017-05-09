@@ -22,7 +22,6 @@ Route::get('/halo', function()
 
 Route::get('/halo-juga', 'SiteController@haloJuga');
 
-
 Route::get('/profile', 'ProfilController@index');
 
 Route::get('/materi', 'MateriController@show');
@@ -34,3 +33,17 @@ Route::get('/login','LoginController@login');
 Route::get('login', 'LoginController@formsederhana');
  
 Route::post('login', 'LoginController@postformsederhana');
+
+Route::get('products/{id?}',function($id=null){
+	if($id==null){
+		$products = App\Product::all(array('id','nama','kategori','harga'));
+	}else{
+		$products = App\Product::find($id,array('id','nama','kategori','harga'));
+	}
+
+	return Response::json(array(
+			'error' => false,
+			'products' => $products,
+			'status_code' => 200
+		));
+});
